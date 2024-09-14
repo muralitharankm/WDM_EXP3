@@ -133,6 +133,7 @@ visualize_patterns_line(bottom_wear_result, 'Bottom Wear')
 visualize_patterns_line(party_wear_result, 'Party Wear')
 ```
 ### Output:
+Thus,The Generalized Sequential Pattern (GSP) algorithm is a data mining technique used for discovering frequent patterns within a sequence database. It operates by identifying sequences that frequently occur together. GSP works by employing a depth-first search strategy to explore and extract frequent patterns efficiently.
 
 ![Screenshot 2024-09-14 100650](https://github.com/user-attachments/assets/ec8aef3c-3969-4e58-8f6e-ac2124d68fed)
 
