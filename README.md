@@ -1,4 +1,5 @@
 ### EX3 Implementation of GSP Algorithm In Python
+## NAME: SWETHA A
 ### DATE: 14-09-2024
 ### AIM: To implement GSP Algorithm In Python.
 ### Description:
@@ -141,3 +142,4 @@ Thus,The Generalized Sequential Pattern (GSP) algorithm is a data mining techniq
 
 
 ### Result:
+Thus, GSP Algorithm In Python is successfully compiled.
