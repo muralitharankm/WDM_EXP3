@@ -1,6 +1,5 @@
 ### EX3 Implementation of GSP Algorithm In Python
-## NAME: MURALITHARAN K M
-### DATE: 12-04-2025
+### DATE: 12.04.2025
 ### AIM: To implement GSP Algorithm In Python.
 ### Description:
 The Generalized Sequential Pattern (GSP) algorithm is a data mining technique used for discovering frequent patterns within a sequence database. It operates by identifying sequences that frequently occur together. GSP works by employing a depth-first search strategy to explore and extract frequent patterns efficiently.
@@ -37,75 +36,105 @@ for each wear category.</p>
 <p align="justify">
 8. Visulaize the sequence patterns using matplotlib.
 </p>
+
 ### Program:
 
 ```python
 from collections import defaultdict
 from itertools import combinations
+
 # Function to generate candidate k-item sequences
 def generate_candidates(dataset, k):
+    candidate_count = defaultdict(int)
 
+    for sequence in dataset:
+        for itemset in combinations(sequence, k):
+            candidate_count[itemset] += 1
 
-    /WRITE YOUR CODE HERE/
+    return candidate_count
 
-
-#Function to perform GSP algorithm
+# Function to perform GSP algorithm
 def gsp(dataset, min_support):
+    # Step 1: Initialize the frequent patterns dictionary
+    frequent_patterns = defaultdict(int)
 
+    # Step 2: Generate frequent 1-item sequences
+    k = 1
+    candidate_count = generate_candidates(dataset, k)
 
-  /WRITE YOUR CODE HERE/
+    # Step 3: Prune and update frequent patterns
+    frequent_patterns.update({itemset: count for itemset,
+    count in candidate_count.items() if count >= min_support})
 
+    # Step 4: Generate frequent k-item sequences until no more can be generated
+    while candidate_count:
+        k += 1
+        candidate_count = generate_candidates(dataset, k)
 
-#Example dataset for each category
+        # Prune and update frequent patterns
+        frequent_patterns.update({itemset: count for itemset,
+        count in candidate_count.items() if count >= min_support})
+
+    return frequent_patterns
+
+# Example dataset for each category
 top_wear_data = [
- ["blouse", "t-shirt", "tank_top"],
- ["hoodie", "sweater", "top"],["hoodie"],["hoodie","sweater"]
- #Add more sequences for top wear
+    ["blouse", "t-shirt", "tank_top"],
+    ["hoodie", "sweater", "top"],
+    ["hoodie"],
+    ["hoodie", "sweater"]
+    # Add more sequences for top wear
 ]
 bottom_wear_data = [
- ["jeans", "trousers", "shorts"],
- ["leggings", "skirt", "chinos"],
- # Add more sequences for bottom wear
+    ["jeans", "trousers", "shorts"],
+    ["leggings", "skirt", "chinos"],
+    # Add more sequences for bottom wear
 ]
 party_wear_data = [
- ["cocktail_dress", "evening_gown", "blazer"],
- ["party_dress", "formal_dress", "suit"],
- ["party_dress", "formal_dress", "suit"],
- ["party_dress", "formal_dress", "suit"],
- ["party_dress", "formal_dress", "suit"],
- ["party_dress"],["party_dress"],
- # Add more sequences for party wear
+    ["cocktail_dress", "evening_gown", "blazer"],
+    ["party_dress", "formal_dress", "suit"],
+    ["party_dress", "formal_dress", "suit"],
+    ["party_dress", "formal_dress", "suit"],
+    ["party_dress", "formal_dress", "suit"],
+    ["party_dress"],
+    ["party_dress"],
+    # Add more sequences for party wear
 ]
-#Minimum support threshold
+# Minimum support threshold
 min_support = 2
-#Perform GSP algorithm for each category
+# Perform GSP algorithm for each category
 top_wear_result = gsp(top_wear_data, min_support)
 bottom_wear_result = gsp(bottom_wear_data, min_support)
 party_wear_result = gsp(party_wear_data, min_support)
-#Output the frequent sequential patterns for each category
+# Output the frequent sequential patterns for each category
 print("Frequent Sequential Patterns - Top Wear:")
+
 if top_wear_result:
- for pattern, support in top_wear_result.items():
- print(f"Pattern: {pattern}, Support: {support}")
+    for pattern, support in top_wear_result.items():
+        print(f"Pattern: {pattern}, Support: {support}")
 else:
- print("No frequent sequential patterns found in Top Wear.")
+    print("No frequent sequential patterns found in Top Wear.")
 print("\nFrequent Sequential Patterns - Bottom Wear:")
+
+
 if bottom_wear_result:
- for pattern, support in bottom_wear_result.items():
- print(f"Pattern: {pattern}, Support: {support}")
+    for pattern, support in bottom_wear_result.items():
+        print(f"Pattern: {pattern}, Support: {support}")
 else:
- print("No frequent sequential patterns found in Bottom Wear.")
+    print("No frequent sequential patterns found in Bottom Wear.")
 print("\nFrequent Sequential Patterns - Party Wear:")
+
+
+
 if party_wear_result:
- for pattern, support in party_wear_result.items():
- print(f"Pattern: {pattern}, Support: {support}")
+    for pattern, support in party_wear_result.items():
+        print(f"Pattern: {pattern}, Support: {support}")
 else:
- print("No frequent sequential patterns found in Party Wear.")
+    print("No frequent sequential patterns found in Party Wear.")
 ```
 ### Output:
 
-![Screenshot 2024-09-14 092206](https://github.com/user-attachments/assets/af1be484-10f8-4b7d-a770-ae205e375b7d)
-
+![image](https://github.com/user-attachments/assets/26e480f1-7b3a-4af4-8354-3254434a7c9b)
 
 ### Visualization:
 ```python
@@ -134,13 +163,11 @@ visualize_patterns_line(bottom_wear_result, 'Bottom Wear')
 visualize_patterns_line(party_wear_result, 'Party Wear')
 ```
 ### Output:
-Thus,The Generalized Sequential Pattern (GSP) algorithm is a data mining technique used for discovering frequent patterns within a sequence database. It operates by identifying sequences that frequently occur together. GSP works by employing a depth-first search strategy to explore and extract frequent patterns efficiently.
 
-![Screenshot 2024-09-14 100650](https://github.com/user-attachments/assets/ec8aef3c-3969-4e58-8f6e-ac2124d68fed)
+![image](https://github.com/user-attachments/assets/c1063458-93ef-4621-b8ea-8303e4ed3554)
 
-![Screenshot 2024-09-14 100710](https://github.com/user-attachments/assets/f6faf0f2-d972-4ce1-9c23-665e5e55c8fd)
-
+![image](https://github.com/user-attachments/assets/50bc3255-461e-4663-ac1a-7ad94678604c)
 
 ### Result:
-Thus, GSP Algorithm In Python is successfully compiled.
 
+Thus, the implementation of the GSP algorithm in Python has been successfully executed.
